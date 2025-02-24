@@ -59,7 +59,7 @@ export const PokemonList = () => {
   ];
 
   return (
-    <div className="h-[200vh]">
+    <div className="">
       <h1>Pokemon List</h1>
       {/* <ul>
         {data?.results.map((pokemon) => (
@@ -69,13 +69,13 @@ export const PokemonList = () => {
         ))}
       </ul> */}
       <h1 className="text-2xl font-bold mb-4">User Table</h1>
-      <div className="h-[500px] w-[400px]">
+      < div className="h-[500px] w-[400px]" >
         <Table
           data={data?.results}
           columns={columns}
           defaultSort={{ key: "name", direction: "asc" }}
         />
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
