@@ -39,7 +39,7 @@ export const PokemonList = () => {
       key: "url",
       label: "ID",
       sortable: true,
-      render: (value: any) => <span>{value}</span>,
+      // render: (value: any) => <span>{value}</span>,
     },
     { key: "name", label: "Name", sortable: true },
     {
@@ -59,7 +59,7 @@ export const PokemonList = () => {
   ];
 
   return (
-    <div className="">
+    <div className="h-[200vh]">
       <h1>Pokemon List</h1>
       {/* <ul>
         {data?.results.map((pokemon) => (
@@ -69,7 +69,7 @@ export const PokemonList = () => {
         ))}
       </ul> */}
       <h1 className="text-2xl font-bold mb-4">User Table</h1>
-      < div className="h-[500px] w-[400px]" >
+      < div className="h-[calc(75dvh-160px)] w-[400px]" >
         <Table
           data={data?.results}
           columns={columns}

@@ -1,7 +1,10 @@
+'use client'
+import { useUIStore } from "@/stores/useUIStore";
 
 const ProfilePage = () => {
+    const { isSideBarShow, toggleSidebar } = useUIStore();
     return (
-        <div>ProfilePage</div>
+        <div onClick={() => toggleSidebar()}>ProfilePage</div>
     )
 }
 
