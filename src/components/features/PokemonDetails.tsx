@@ -1,5 +1,5 @@
 'use client'
-import { usePokemonDetails } from "@/hooks/usePokemonDetails";
+import { usePokemonDetails } from "@/hooks/pokemon/fetch/usePokemonDetails";
 
 export const PokemonDetails = ({ id }: { id: string }) => {
   const { data, isLoading, error } = usePokemonDetails(id);

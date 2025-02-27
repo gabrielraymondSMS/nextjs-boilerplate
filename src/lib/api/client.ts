@@ -7,6 +7,7 @@ const BASE_URLS = {
 
 // Function to create an Axios instance dynamically
 export const createAxiosClient = (apiName: keyof typeof BASE_URLS) => {
+    console.log('lol', process.env.NEXT_PUBLIC_JSON_PLACEHOLDER_BASE_URL)
     return axios.create({
         baseURL: BASE_URLS[apiName],
         headers: {

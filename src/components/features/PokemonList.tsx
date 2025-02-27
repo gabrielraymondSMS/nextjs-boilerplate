@@ -1,9 +1,9 @@
 "use client";
-import { usePokemonList } from "@/hooks/usePokemon";
+import { usePokemonList } from "@/hooks/queries/pokemon/usePokemon";
 import Link from "next/link";
 import Table from "../common/Table";
 import { Pokemon } from "@/types/api/pokemon";
-import { useUserList } from "@/hooks/useUsers";
+import { useUserList } from "@/hooks/queries/placeholder/useUsers";
 
 // interface Data {
 //   id: number;
@@ -59,7 +59,7 @@ export const PokemonList = () => {
   ];
 
   return (
-    <div className="h-[200vh]">
+    <div className="">
       <h1>Pokemon List</h1>
       {/* <ul>
         {data?.results.map((pokemon) => (
