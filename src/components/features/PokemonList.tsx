@@ -1,7 +1,7 @@
 "use client";
 import { usePokemonList } from "@/hooks/queries/pokemon/usePokemon";
 import Link from "next/link";
-import Table from "../common/Table";
+import Table from "../common/table/Table";
 import { Pokemon } from "@/types/api/pokemon";
 import { useUserList } from "@/hooks/queries/placeholder/useUsers";
 
@@ -37,7 +37,7 @@ export const PokemonList = () => {
   const columns: any = [
     {
       key: "url",
-      label: "ID",
+      label: "URL",
       sortable: true,
       // render: (value: any) => <span>{value}</span>,
     },
@@ -47,7 +47,7 @@ export const PokemonList = () => {
       label: "Action",
       sortable: true,
       sticky: "right",
-      render: (_: any, row: Pokemon, idx: any) => (
+      render: (item: any, row: Pokemon, idx: any) => (
         <Link
           href={`/pokemon/${row.name}`}
           className={`px-2 py-1 text-sm rounded-full bg-green-100 text-green-800"`}

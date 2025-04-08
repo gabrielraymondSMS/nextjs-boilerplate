@@ -1,6 +1,6 @@
 'use client'
 import { useUserList } from "@/hooks/queries/placeholder/useUsers";
-import Table from "../common/Table";
+import Table from "../common/table/Table";
 import { useCreatePost } from "@/hooks/mutation/placeholder/useCreatePost";
 
 const columns: any = [

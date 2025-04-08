@@ -5,11 +5,13 @@ import { ReactNode } from "react";
 
 const queryClient = new QueryClient();
 
+const devtools = process.env.NEXT_PUBLIC_ENABLE_REACT_QUERY_DEVTOOLS;
+
 export const AppProviders = ({ children }: { children: ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {devtools === "true" && <ReactQueryDevtools initialIsOpen={true} />}
     </QueryClientProvider>
   );
 };
