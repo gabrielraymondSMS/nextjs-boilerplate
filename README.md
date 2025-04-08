@@ -24,6 +24,7 @@ npm run build
 
 3. Project Structure
 
+```
 src/
 │
 ├── app/                                # Next.js 14 App Router
@@ -103,6 +104,7 @@ src/
 │   └── pokemon.ts                      # Pokemon-related types
 └── middleware.ts                       # Middleware to handle auth, redirects, or request rewrites
 
+```
 
 4. Features
 - Next.js 15 App Router
