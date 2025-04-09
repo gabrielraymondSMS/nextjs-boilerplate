@@ -1,26 +1,36 @@
-📘 Frontend Boilerplate Documentation
+# 📘 FRONTEND BOILERPLATE DOCUMENTATION
 
-1. Intorduction
-Welcome to the Frontend Boilerplate!
-This boilerplate is built for fast, scalable, and modern web app development using:
-- Next.js 15 (App Router)
-- Typescript
-- Zustand for state management
-- React Query for data fetching
-- Tailwind CSS for
+## 1. INTRODUCTION
 
-2. Getting Started
-Installation
-- git clone [repo]
-- cd nextjs-boilerplate
-- npm install
+Welcome to the **Frontend Boilerplate**!
 
+This boilerplate is designed for **fast**, **scalable**, and **modern** web app development using:
+
+- **Next.js 15 (App Router)**
+- **TypeScript**
+- **Zustand** for state management
+- **React Query** for data fetching
+- **Tailwind CSS** for styling
+
+---
+
+## 2. GETTING STARTED
+
+### 🔧 Installation
+
+```bash
+git clone [repo]
+cd nextjs-boilerplate
+npm install
+```
 Development: 
+```bash
 npm run dev
-
+```
 Build:
+```bash
 npm run build
-
+```
 
 3. Project Structure
 
@@ -112,6 +122,8 @@ src/
 - React Query with Hydration
 - Zustand state management
 - Tailwind CSS
+- React-hook-form
+- yup validation
 - Foldre-align structure
 - Environment Variable Support
 
