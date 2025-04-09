@@ -178,7 +178,6 @@ export const fetchUserList = async (params: any) => {
   const response = await sonergyApiClient.get("/users", { params })
   return response?.data?.data
 }
-
 ```
 
 🧠 Step 4: Create a Custom Hook with React Query
@@ -214,55 +213,71 @@ const {
 
 ```
 
+🔁 Mutation Setup (POST, PUT, DELETE)
+Steps 1 & 2 are the same as fetching. We continue from Step 3.
 
+📁 Step 3: Create API Service for Mutation
+File: src/lib/api/users/userService.ts
+```jsx
+import { User } from "@/types/ColumnType";
+import { sonergyApiClient } from "../client";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+// Create a new user
+export const createUser = async (body: User) => {
+  const response = await sonergyApiClient.post("/users", body);
+  return response.data;
+};
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🧠 Step 4: Create Custom Mutation Hook
+File: src/hooks/useCreateUser.ts
+```jsx
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createUser } from "@/lib/api/users/userService";
+import { User } from "@/types/ColumnType";
+import { useSnackbarStore } from "@/stores/useSnackbarStore";
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+export const useCreateUser = () => {
+  const queryClient = useQueryClient();
+  const showSnackbar = useSnackbarStore((state) => state.showSnackbar);
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  return useMutation<any, Error, User>({
+    mutationFn: createUser,
+    onSuccess: (data) => {
+      console.log("Register successful:", data?.data);
+      queryClient.invalidateQueries({ queryKey: ["userList"] });
+    },
+    onError: (error: any) => {
+      showSnackbar(error?.response?.data?.message, "error", "top");
+    },
+  });
+};
+```
 
-## Learn More
+🧩 Step 5: Use Mutation Hook in Component
+```jsx
+const { mutate } = useCreateUser();
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+const onSubmit: SubmitHandler<CreateUserFormInputs> = (data) => {
+  mutate(
+    {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      role: data.role,
+      phone: data.phone,
+    },
+    {
+      onSuccess: () => {
+        setIsShow(false);
+        setIsShowConfirmationCreate(false);
+        reset();
+      },
+      onError: () => {
+        setIsShow(true);
+        setIsShowConfirmationCreate(false);
+      },
+    }
+  );
+};
+```
